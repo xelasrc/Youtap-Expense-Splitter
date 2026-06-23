@@ -152,6 +152,39 @@ button.remove:hover {
   margin-top: 4px;
 }
 
+/* ── Participant chips ───────────────────────────────────── */
+.participant-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.participant-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.participant-chip input[type="checkbox"] {
+  display: none;
+}
+
+.participant-chip--on {
+  border-color: var(--accent);
+  background: rgba(105, 53, 211, 0.08);
+  color: var(--accent);
+  font-weight: 600;
+}
+
 /* ── Expense list ────────────────────────────────────────── */
 .expense-list {
   margin-top: 24px;
@@ -192,6 +225,12 @@ button.remove:hover {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.expense-participants {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 500;
 }
 
 /* ── Summary ─────────────────────────────────────────────── */

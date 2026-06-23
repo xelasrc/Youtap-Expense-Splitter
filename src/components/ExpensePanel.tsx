@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { Person, Expense } from '../settlement'
 import { parseCents, formatCents } from '../money'
 
@@ -13,25 +13,50 @@ export function ExpensePanel({ people, expenses, onAdd, onRemove }: Props) {
   const [payer, setPayer] = useState('')
   const [amount, setAmount] = useState('')
   const [description, setDescription] = useState('')
+  const [selectedParticipants, setSelectedParticipants] = useState<string[]>(
+    people.map(p => p.id)
+  )
 
   const effectivePayer =
     payer && people.some(p => p.id === payer) ? payer : people[0]?.id ?? ''
 
+  useEffect(() => {
+    setSelectedParticipants(prev => {
+      const currentIds = new Set(people.map(p => p.id))
+      const filtered = prev.filter(id => currentIds.has(id))
+      const existing = new Set(filtered)
+      const added = people.filter(p => !existing.has(p.id)).map(p => p.id)
+      return [...filtered, ...added]
+    })
+  }, [people])
+
+  function toggleParticipant(id: string) {
+    setSelectedParticipants(prev =>
+      prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]
+    )
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const cents = parseCents(amount)
-    if (cents <= 0 || !effectivePayer) return
+    if (cents <= 0 || !effectivePayer || selectedParticipants.length === 0) return
     onAdd({
       payer: effectivePayer,
       amountCents: cents,
       description: description.trim(),
-      participants: people.map(p => p.id),
+      participants: selectedParticipants,
     })
     setAmount('')
     setDescription('')
+    setSelectedParticipants(people.map(p => p.id))
   }
 
-  const payerName = (id: string) => people.find(p => p.id === id)?.name ?? 'Unknown'
+  const nameOf = (id: string) => people.find(p => p.id === id)?.name ?? 'Unknown'
+
+  const participantLabel = (ids: string[]) =>
+    ids.length === people.length
+      ? 'Everyone'
+      : ids.map(nameOf).join(', ')
 
   if (people.length === 0) {
     return (
@@ -83,7 +108,30 @@ export function ExpensePanel({ people, expenses, onAdd, onRemove }: Props) {
           />
         </div>
 
-        <button type="submit" className="btn-primary" disabled={parseCents(amount) <= 0}>
+        <div className="form-row">
+          <label>Split between</label>
+          <div className="participant-checkboxes">
+            {people.map(p => (
+              <label
+                key={p.id}
+                className={`participant-chip${selectedParticipants.includes(p.id) ? ' participant-chip--on' : ''}`}
+              >
+                <input
+                  type="checkbox"
+                  checked={selectedParticipants.includes(p.id)}
+                  onChange={() => toggleParticipant(p.id)}
+                />
+                {p.name}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="btn-primary"
+          disabled={parseCents(amount) <= 0 || selectedParticipants.length === 0}
+        >
           Add expense
         </button>
       </form>
@@ -95,9 +143,14 @@ export function ExpensePanel({ people, expenses, onAdd, onRemove }: Props) {
               <div className="expense-info">
                 <span className="expense-amount">{formatCents(exp.amountCents)}</span>
                 <span className="expense-detail">
-                  {payerName(exp.payer)} paid
+                  {nameOf(exp.payer)} paid
                   {exp.description ? ` · ${exp.description}` : ''}
                 </span>
+                {exp.participants.length < people.length && (
+                  <span className="expense-participants">
+                    {participantLabel(exp.participants)}
+                  </span>
+                )}
               </div>
               <button
                 type="button"
