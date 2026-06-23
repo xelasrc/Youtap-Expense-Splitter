@@ -28,16 +28,18 @@ export interface SettlementResult {
 }
 
 /**
- * Split amountCents across participants. Remainder cents go to the first
- * participants in order so that splits always sum exactly to amountCents.
+ * Split amountCents across participants. Remainder cents go to participants
+ * starting at startIndex (rotating across expenses) so that splits always sum
+ * exactly to amountCents and remainder cents are distributed fairly over time.
  */
-function splitCents(amountCents: number, participantIds: string[]): Map<string, number> {
+function splitCents(amountCents: number, participantIds: string[], startIndex: number = 0): Map<string, number> {
   const n = participantIds.length
   const base = Math.floor(amountCents / n)
   const remainder = amountCents % n
   const shares = new Map<string, number>()
   participantIds.forEach((id, i) => {
-    shares.set(id, i < remainder ? base + 1 : base)
+    const pos = (i - startIndex + n) % n
+    shares.set(id, pos < remainder ? base + 1 : base)
   })
   return shares
 }
@@ -50,9 +52,10 @@ export function computeSettlements(people: Person[], expenses: Expense[]): Settl
   // Phase 1 — net balances
   const balanceMap = new Map<string, number>(people.map(p => [p.id, 0]))
 
-  for (const expense of expenses) {
+  for (let i = 0; i < expenses.length; i++) {
+    const expense = expenses[i]
     const participants = expense.participants.length > 0 ? expense.participants : people.map(p => p.id)
-    const shares = splitCents(expense.amountCents, participants)
+    const shares = splitCents(expense.amountCents, participants, i)
 
     // Payer is credited the full amount
     balanceMap.set(expense.payer, (balanceMap.get(expense.payer) ?? 0) + expense.amountCents)
