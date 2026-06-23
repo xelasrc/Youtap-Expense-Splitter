@@ -14,7 +14,8 @@ export function ExpensePanel({ people, expenses, onAdd, onRemove }: Props) {
   const [amount, setAmount] = useState('')
   const [description, setDescription] = useState('')
 
-  const effectivePayer = payer || people[0]?.id || ''
+  const effectivePayer =
+    payer && people.some(p => p.id === payer) ? payer : people[0]?.id ?? ''
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
