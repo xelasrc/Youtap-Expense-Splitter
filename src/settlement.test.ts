@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { computeSettlements, Person, Expense } from './settlement'
+import { computeSettlements } from './settlement'
+import type { Person, Expense } from './settlement'
 
 const alice: Person = { id: 'alice', name: 'Alice' }
 const bob: Person = { id: 'bob', name: 'Bob' }
