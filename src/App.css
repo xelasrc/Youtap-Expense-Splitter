@@ -116,16 +116,16 @@
 
 .hero-tagline {
   font-family: var(--font-heading);
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 800;
   color: #fff;
-  line-height: 1.25;
+  line-height: 1.2;
   letter-spacing: -0.5px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .hero-description {
-  font-size: 15px;
+  font-size: 17px;
   color: rgba(255, 255, 255, 0.72);
   line-height: 1.65;
 }
@@ -137,7 +137,7 @@
 }
 
 .hero-image-placeholder {
-  width: 200px;
+  width: 250px;
   opacity: 0.9;
 }
 
