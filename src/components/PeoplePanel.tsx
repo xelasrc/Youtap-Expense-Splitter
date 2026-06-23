@@ -28,7 +28,7 @@ export function PeoplePanel({ people, onAdd, onRemove }: Props) {
           placeholder="Name"
           aria-label="Person's name"
         />
-        <button type="submit" disabled={!name.trim()}>Add</button>
+        <button type="submit" className="btn-primary" disabled={!name.trim()}>Add</button>
       </form>
 
       {people.length === 0 ? (

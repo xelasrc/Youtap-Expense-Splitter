@@ -26,21 +26,25 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1>Expense Splitter</h1>
+    <>
+      <header className="site-header">
+        <div className="site-header__inner">
+          <h1 className="site-header__title">Expense Splitter</h1>
+        </div>
       </header>
-      <main className="app-main">
-        <PeoplePanel people={people} onAdd={addPerson} onRemove={removePerson} />
-        <ExpensePanel
-          people={people}
-          expenses={expenses}
-          onAdd={addExpense}
-          onRemove={removeExpense}
-        />
-        <SummaryPanel people={people} expenses={expenses} />
-      </main>
-    </div>
+      <div className="app">
+        <main className="app-main">
+          <PeoplePanel people={people} onAdd={addPerson} onRemove={removePerson} />
+          <ExpensePanel
+            people={people}
+            expenses={expenses}
+            onAdd={addExpense}
+            onRemove={removeExpense}
+          />
+          <SummaryPanel people={people} expenses={expenses} />
+        </main>
+      </div>
+    </>
   )
 }
 

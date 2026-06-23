@@ -83,7 +83,7 @@ export function ExpensePanel({ people, expenses, onAdd, onRemove }: Props) {
           />
         </div>
 
-        <button type="submit" disabled={parseCents(amount) <= 0}>
+        <button type="submit" className="btn-primary" disabled={parseCents(amount) <= 0}>
           Add expense
         </button>
       </form>

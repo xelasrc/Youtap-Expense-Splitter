@@ -1,17 +1,32 @@
-.app {
-  max-width: 640px;
+/* ── Site header — full-width Youtap purple bar ──────────── */
+.site-header {
+  background: var(--accent);
+  box-shadow: 0 2px 16px rgba(105, 53, 211, 0.35);
+}
+
+.site-header__inner {
+  max-width: 660px;
   margin: 0 auto;
-  padding: 0 16px 48px;
+  padding: 0 20px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.app-header {
-  padding: 32px 0 24px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 32px;
+.site-header__title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
 }
 
-.app-header h1 {
-  font-size: 28px;
+/* ── Layout ──────────────────────────────────────────────── */
+.app {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
 }
 
 .app-main {
@@ -20,49 +35,75 @@
   gap: 24px;
 }
 
-/* Panel card */
+/* ── Panel card ──────────────────────────────────────────── */
 .panel {
   background: var(--bg-panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  transition: box-shadow 0.2s;
+}
+
+.panel:hover {
+  box-shadow: var(--shadow-md);
 }
 
 .panel h2 {
-  font-size: 16px;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  margin-bottom: 16px;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
 }
 
-/* Add-person row */
-.add-row {
-  display: flex;
-  gap: 8px;
-}
-
-.add-row input {
-  flex: 1;
-}
-
-.add-row button[type="submit"] {
+/* ── Primary pill button ─────────────────────────────────── */
+.btn-primary {
   background: var(--accent);
   color: #fff;
+  border-radius: var(--radius-pill);
+  padding: 9px 22px;
+  font-size: 14px;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
-.add-row button[type="submit"]:hover:not(:disabled) {
-  background: var(--accent-hover);
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-soft);
+  box-shadow: var(--shadow-sm);
 }
 
-.add-row button[type="submit"]:disabled {
-  opacity: 0.45;
+.btn-primary:disabled {
+  background: var(--accent-tint);
   cursor: default;
 }
 
-/* People list */
+/* ── Remove button ───────────────────────────────────────── */
+button.remove {
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+button.remove:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* ── Add-person row ──────────────────────────────────────── */
+.add-row {
+  display: flex;
+  gap: 10px;
+}
+
+.add-row input { flex: 1; }
+
+/* ── People list ─────────────────────────────────────────── */
 .people-list {
   margin-top: 16px;
   display: flex;
@@ -74,90 +115,51 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   font-size: 15px;
 }
 
 .people-list li span {
   font-weight: 500;
-  color: var(--text-heading);
+  color: var(--ink);
 }
 
-button.remove {
-  background: transparent;
-  color: var(--danger);
-  font-size: 13px;
-  padding: 4px 10px;
-  border: 1px solid var(--danger);
-}
-
-button.remove:hover {
-  background: var(--danger);
-  color: #fff;
-}
-
-/* Expense form */
+/* ── Expense form ────────────────────────────────────────── */
 .expense-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .form-row {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 
 .form-row label {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
 }
 
-.form-row select {
-  font: inherit;
-  font-size: 15px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 6px 10px;
-  background: var(--bg-panel);
-  color: var(--text);
-  outline: none;
-}
-
-.form-row select:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
-}
-
-.expense-form button[type="submit"] {
-  background: var(--accent);
-  color: #fff;
+.expense-form .btn-primary {
   align-self: flex-start;
-  padding: 8px 18px;
   margin-top: 4px;
 }
 
-.expense-form button[type="submit"]:hover:not(:disabled) {
-  background: var(--accent-hover);
-}
-
-.expense-form button[type="submit"]:disabled {
-  opacity: 0.45;
-  cursor: default;
-}
-
-/* Expense list */
+/* ── Expense list ────────────────────────────────────────── */
 .expense-list {
-  margin-top: 20px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border-top: 1px solid var(--border);
-  padding-top: 20px;
 }
 
 .expense-list li {
@@ -165,9 +167,9 @@ button.remove:hover {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
 }
 
 .expense-info {
@@ -178,9 +180,10 @@ button.remove:hover {
 }
 
 .expense-amount {
-  font-weight: 600;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 15px;
-  color: var(--text-heading);
+  color: var(--ink);
 }
 
 .expense-detail {
@@ -191,7 +194,7 @@ button.remove:hover {
   text-overflow: ellipsis;
 }
 
-/* Summary panel */
+/* ── Summary ─────────────────────────────────────────────── */
 .summary-section {
   margin-top: 20px;
 }
@@ -202,11 +205,11 @@ button.remove:hover {
 }
 
 .summary-section h3 {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
   margin-bottom: 12px;
 }
 
@@ -221,24 +224,20 @@ button.remove:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
-  border-radius: var(--radius);
-  font-size: 15px;
+  padding: 10px 14px;
   border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
 }
 
 .balance-name {
-  font-weight: 500;
-  color: var(--text-heading);
+  font-weight: 600;
+  color: var(--ink);
 }
 
-.balance-positive .balance-amount { color: #16a34a; }
-.balance-negative .balance-amount { color: var(--danger); }
+.balance-positive .balance-amount { color: var(--success); font-weight: 600; }
+.balance-negative .balance-amount { color: var(--danger);  font-weight: 600; }
 .balance-zero     .balance-amount { color: var(--text-muted); }
-
-@media (prefers-color-scheme: dark) {
-  .balance-positive .balance-amount { color: #4ade80; }
-}
 
 /* Settlement list */
 .settlement-list {
@@ -251,41 +250,38 @@ button.remove:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 12px;
-  border-radius: var(--radius);
-  background: color-mix(in srgb, var(--accent) 8%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background: rgba(162, 168, 220, 0.15);
+  border: 1px solid rgba(162, 168, 220, 0.4);
   font-size: 15px;
 }
 
-.settlement-names { color: var(--text-heading); }
-
-.arrow {
-  color: var(--text-muted);
-  font-weight: 400;
+.settlement-names {
+  color: var(--ink);
+  font-weight: 500;
 }
 
+.arrow { color: var(--accent-tint); }
+
 .settlement-amount {
-  font-weight: 600;
+  font-family: var(--font-heading);
+  font-weight: 700;
   color: var(--accent);
 }
 
 .all-square {
-  color: #16a34a;
+  color: var(--success);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   padding: 4px 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  .all-square { color: #4ade80; }
-}
-
-/* Empty state */
+/* ── Empty state ─────────────────────────────────────────── */
 .empty {
-  margin-top: 16px;
+  margin-top: 12px;
   color: var(--text-muted);
   font-size: 14px;
   text-align: center;
-  padding: 16px 0;
+  padding: 20px 0;
 }
