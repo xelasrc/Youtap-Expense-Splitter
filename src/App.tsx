@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Person, Expense } from './settlement'
 import { PeoplePanel } from './components/PeoplePanel'
 import { ExpensePanel } from './components/ExpensePanel'
+import { SummaryPanel } from './components/SummaryPanel'
 import './App.css'
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           onAdd={addExpense}
           onRemove={removeExpense}
         />
+        <SummaryPanel people={people} expenses={expenses} />
       </main>
     </div>
   )
