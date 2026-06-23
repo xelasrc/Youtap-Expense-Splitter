@@ -38,7 +38,7 @@ function splitCents(amountCents: number, participantIds: string[], startIndex: n
   const remainder = amountCents % n
   const shares = new Map<string, number>()
   participantIds.forEach((id, i) => {
-    const pos = (i - startIndex + n) % n
+    const pos = ((i - startIndex) % n + n) % n
     shares.set(id, pos < remainder ? base + 1 : base)
   })
   return shares
