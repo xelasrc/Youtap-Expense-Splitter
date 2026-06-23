@@ -471,3 +471,17 @@ button.remove:hover {
   text-align: center;
   padding: 20px 0;
 }
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .header-sep,
+  .header-app,
+  .header-name { display: none; }
+
+  .hero-section { padding: 32px 20px 36px; }
+  .hero-right { display: none; }
+  .hero-tagline { font-size: 26px; }
+  .hero-description { font-size: 15px; }
+
+  .app { padding: 24px 16px 48px; }
+}
