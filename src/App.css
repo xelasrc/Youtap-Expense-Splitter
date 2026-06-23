@@ -98,6 +98,99 @@ button.remove:hover {
   color: #fff;
 }
 
+/* Expense form */
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-row label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.form-row select {
+  font: inherit;
+  font-size: 15px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  background: var(--bg-panel);
+  color: var(--text);
+  outline: none;
+}
+
+.form-row select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.expense-form button[type="submit"] {
+  background: var(--accent);
+  color: #fff;
+  align-self: flex-start;
+  padding: 8px 18px;
+  margin-top: 4px;
+}
+
+.expense-form button[type="submit"]:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.expense-form button[type="submit"]:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Expense list */
+.expense-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.expense-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.expense-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.expense-amount {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-heading);
+}
+
+.expense-detail {
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Empty state */
 .empty {
   margin-top: 16px;
