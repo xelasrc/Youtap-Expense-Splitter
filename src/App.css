@@ -5,7 +5,7 @@
 }
 
 .site-header__inner {
-  max-width: 660px;
+  max-width: 850px;
   margin: 0 auto;
   padding: 0 20px;
   height: 64px;
@@ -75,9 +75,59 @@
 
 /* ── Layout ──────────────────────────────────────────────── */
 .app {
-  max-width: 660px;
+  max-width: 850px;
   margin: 0 auto;
   padding: 32px 20px 64px;
+}
+
+.hero-section {
+  background: var(--accent);
+  padding: 44px 20px 52px;
+  box-shadow: 0 4px 24px rgba(105, 53, 211, 0.25);
+}
+
+.hero-inner {
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.hero-left {
+  flex: 1;
+}
+
+.hero-tagline {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.hero-description {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.65;
+}
+
+.hero-right {
+  flex: 0 0 130px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image-placeholder {
+  width: 200px;
+  opacity: 0.9;
+}
+
+.hero-image-placeholder img {
+  width: 100%;
+  height: auto;
 }
 
 .app-main {

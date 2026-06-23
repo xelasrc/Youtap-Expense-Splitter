@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import heroImage from './assets/hero-image.svg'
 import type { Person, Expense } from './settlement'
 import { PeoplePanel } from './components/PeoplePanel'
 import { ExpensePanel } from './components/ExpensePanel'
@@ -77,6 +78,22 @@ function App() {
           </div>
         </div>
       </header>
+      <div className="hero-section">
+        <div className="hero-inner">
+          <div className="hero-left">
+            <p className="hero-tagline">No more awkward money conversations.</p>
+            <p className="hero-description">
+              Add your group, record who paid for what, and get a clear settle-up list in seconds.
+              Perfect for trips, dinners, flatmates — any shared cost.
+            </p>
+          </div>
+          <div className="hero-right">
+            <div className="hero-image-placeholder">
+              <img src={heroImage} alt="" aria-hidden="true" />
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="app">
         <main className="app-main">
           <PeoplePanel people={people} onAdd={addPerson} onRemove={removePerson} />
